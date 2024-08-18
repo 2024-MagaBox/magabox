@@ -8,6 +8,10 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<MainPage />} />
+          <Route path="/movie" element={<MainPage />} />
+          <Route path="/event" element={<MainPage />} />
+          <Route path="/login" element={<MainPage />} />
+          <Route path="/mypage" element={<MainPage />} />
         </Routes>
       </Layout>
     </div>
