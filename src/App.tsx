@@ -1,15 +1,9 @@
-import MainPage from "./pages/MainPage";
-import Layout from "./components/layout/Layout";
-import { Routes, Route } from "react-router-dom";
+import Routing from "./components/layout/Routing";
 
 function App() {
   return (
-    <div>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-        </Routes>
-      </Layout>
+    <div className="font-Pretendard">
+      <Routing />
     </div>
   );
 }
