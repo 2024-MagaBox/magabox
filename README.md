@@ -31,8 +31,8 @@
 
 - 이성규 Main
 - 김도은 Store
-- 오연우 
+- 오연우 Seat
 - 임수경 Mypage
-- 정의석 
+- 정의석 Schedule
 
 ---
