@@ -1,6 +1,7 @@
 import SubNavbar from "../components/LSG/organism/SubNavbar";
 import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
+import TestImage from "../components/LSG/atom/TestImage";
 
 const Event = () => {
   return (
@@ -13,7 +14,17 @@ const Event = () => {
 
         <div className="flex gap-3 items-center">
           <ArrowBackIosNewRoundedIcon className="hover:cursor-pointer" />
-          <div className="w-full h-96 bg-gray"></div>
+          <div className="w-full h-96 p-5 bg-gray flex snap-x">
+            <div className="snap-center">
+              <div className="w-96 h-60 rounded bg-primaryColor"></div>
+            </div>
+            <div className="snap-center">
+              <div className="w-96 h-60 rounded bg-primaryColor"></div>
+            </div>
+            <div className="snap-center">
+              <div className="w-96 h-60 rounded bg-primaryColor"></div>
+            </div>
+          </div>
           <ArrowForwardIosRoundedIcon className="hover:cursor-pointer" />
         </div>
       </div>

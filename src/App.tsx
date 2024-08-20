@@ -1,11 +1,7 @@
 import Routing from "./components/layout/Routing";
 
 function App() {
-  return (
-    <div className="w-screen font-Pretendard">
-      <Routing />
-    </div>
-  );
+  return <Routing />;
 }
 
 export default App;

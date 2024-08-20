@@ -6,7 +6,7 @@ import Layout from "./Layout";
 
 const Routing = () => {
   return (
-    <div>
+    <div className="w-screen font-Pretendard">
       <Layout>
         <Routes>
           <Route path="/" element={<MainPage />} />
