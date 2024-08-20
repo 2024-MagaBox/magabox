@@ -10,9 +10,12 @@ module.exports = {
     },
     fontSize: {
       sm: "13px",
+      base: "16px",
+      lg: "20px",
     },
     colors: {
       white: "#ffffff",
+      gray: "#cac4ce",
       primaryColor: "#242038",
       subColor: "#2E294E",
     },
