@@ -11,6 +11,11 @@ module.exports = {
     fontSize: {
       sm: "13px",
     },
+    colors: {
+      white: "#ffffff",
+      primaryColor: "#242038",
+      subColor: "#2E294E",
+    },
   },
   plugins: [],
 };
