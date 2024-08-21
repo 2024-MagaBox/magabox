@@ -1,8 +1,8 @@
-import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
+import CategoryTitle from "./CategoryTitle";
 import MypageBookingDetail from "./MypageBookingDetail";
 import MypageNoBooking from "./MypageNoBooking";
 
-type MypageBookingContainerProps = {
+export type MypageBookingContainerProps = {
   title?: string;
   contents?: boolean;
 };
@@ -13,14 +13,10 @@ const MypageBookingContainer = ({
 }: MypageBookingContainerProps) => {
   return (
     <div className="max-w-2xl mx-auto mb-20">
-      <div className="w-full flex justify-between items-end pb-3 border-black border-b">
-        <div className="text-lg font-bold">{title}</div>
-        <div className="text-sm hover:cursor-pointer">
-          더보기
-          <KeyboardArrowRightRoundedIcon />
-        </div>
-      </div>
+      {/* 나의 ~~ 내역 */}
+      <CategoryTitle title={title} />
 
+      {/* 내역 없음 or 내역 보여줌 */}
       {contents ? <MypageBookingDetail /> : <MypageNoBooking />}
     </div>
   );

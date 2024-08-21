@@ -5,9 +5,9 @@ const MypageBookingDetail = () => {
     <div>
       {/* 예매정보 박스 */}
       <div className="w-full py-5 flex justify-center items-center">
-        <div className="w-full p-5 border border-gray-300 rounded flex gap-5">
+        <div className="w-full p-5 border border-gray rounded flex gap-5">
           {/* 좌측 포스터 */}
-          <div className="w-40 h-56 bg-gray-300">
+          <div className="w-40 h-56 bg-gray">
             <img src="" alt="" />
           </div>
 

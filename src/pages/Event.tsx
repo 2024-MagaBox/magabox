@@ -18,9 +18,11 @@ const Event = () => {
           <ArrowForwardIosRoundedIcon className="hover:cursor-pointer" />
         </div>
 
-        {/* Bottom Content x축 스크롤 어케하는거지... */}
-        <div className="py-7 text-lg font-bold">미소지기 Pick</div>
-        <div className="flex gap-10 overflow-auto snap-x snap-proximity mb-20">
+        {/* Bottom Content */}
+        <div>
+          <div className="py-7 text-lg font-bold">미소지기 Pick</div>
+        </div>
+        <div className="w-full flex gap-10 mb-20">
           <EventCard
             imgsrc="/img/eventLinkImg-1.jpg"
             title="[프로모션][굿즈] <메가박스X위글위글> 콤보 런칭!"
