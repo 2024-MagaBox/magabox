@@ -1,7 +1,3 @@
 import Routing from "./components/layout/Routing";
-
-function App() {
-  return <Routing />;
-}
-
+const App = () => <Routing />;
 export default App;

@@ -1,7 +1,5 @@
 const MainPage = () => {
-    return <div>
-        mainpage
-    </div>
-}
+  return <div className="text-lg h-screen">MainPage</div>;
+};
 
 export default MainPage;

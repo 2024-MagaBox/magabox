@@ -12,7 +12,7 @@ const MypageBookingContainer = ({
   contents = false,
 }: MypageBookingContainerProps) => {
   return (
-    <div className="max-w-2xl mx-auto mb-20">
+    <div className="max-w-3xl mx-auto mb-20">
       {/* 나의 ~~ 내역 */}
       <CategoryTitle title={title} />
 

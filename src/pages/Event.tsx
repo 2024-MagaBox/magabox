@@ -10,7 +10,7 @@ const Event = () => {
       <SubNavbar />
 
       {/*  */}
-      <div className="w-full max-w-screen-lg mx-auto py-3 mt-40">
+      <div className="w-full max-w-screen-lg mx-auto py-3">
         <div className="py-7 text-lg font-bold">전체</div>
         <div className="flex gap-3 items-center mb-20">
           <ArrowBackIosNewRoundedIcon className="hover:cursor-pointer" />
