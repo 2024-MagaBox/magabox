@@ -1,6 +1,6 @@
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
 
-const MoreButton = () => {
+const SeeMoreButton = () => {
   return (
     <div className="text-sm hover:cursor-pointer">
       더보기
@@ -9,4 +9,4 @@ const MoreButton = () => {
   );
 };
 
-export default MoreButton;
+export default SeeMoreButton;

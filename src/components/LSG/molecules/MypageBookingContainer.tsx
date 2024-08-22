@@ -16,7 +16,10 @@ const MypageBookingContainer = ({
       {/* 나의 ~~ 내역 */}
       <CategoryTitle title={title} />
 
-      {/* 내역 없음 or 내역 보여줌 */}
+      {/* 가로선 */}
+      <div className="w-full border border-b-primaryColor"></div>
+
+      {/* 내역있없 */}
       {contents ? <MypageBookingDetail /> : <MypageNoBooking />}
     </div>
   );
