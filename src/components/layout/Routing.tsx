@@ -4,6 +4,7 @@ import MainPage from "../../pages/MainPage";
 import MyPage from "../../pages/MyPage";
 import Layout from "./Layout";
 import LoginPage from "../../pages/LoginPage";
+import SignupPage from "../../pages/SignupPage";
 
 const Routing = () => {
   return (
@@ -16,6 +17,7 @@ const Routing = () => {
           <Route path="/event" element={<Event />} />
           <Route path="/event:eventContentsId" element={<Event />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
         </Routes>
       </Layout>
     </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Button, TextField } from "@mui/material";
 import { LoginError } from "../contexts/ErrorMsg";
 
@@ -18,8 +18,10 @@ const SignupPage = () => {
         error_Name : false, 
     })
 
-    const handelChagne = (value: string) => {
-        null;
+    const handelChagne = (e:ChangeEvent<HTMLInputElement>) => {
+        if (e.target.id === 'ID-basic'){
+            setSignup((prev)=>({...prev , userId : e.target.value}))
+        }
     }
     return (
         <div>
@@ -29,7 +31,7 @@ const SignupPage = () => {
                             label="아이디"
                             variant="standard"
                             value={signup.userName}
-                            onChange={()=>handelChagne("id")}
+                            onChange={handelChagne}
                             error={errors.error_id}
                             helperText={errors.error_id ? LoginError.E_id : ''}
                             fullWidth
