@@ -3,11 +3,11 @@ import Header from "./Header";
 
 const Layout = (props: { children: React.ReactNode }) => {
   return (
-    <div>
+    <>
       <Header />
-      <main>{props.children}</main>
+      <main className="h-[600px]">{props.children}</main>
       <Footer />
-    </div>
+    </>
   );
 };
 

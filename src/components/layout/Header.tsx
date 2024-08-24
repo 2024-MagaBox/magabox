@@ -1,8 +1,8 @@
-import Navbar from "../organism/Navbar";
+import Navbar from "../LSK/organism/Navbar";
 
 const Header = () => {
   return (
-    <div className="w-full h-24 bg-black font-bold">
+    <div className="w-full h-24 text-white bg-primaryColor ">
       <Navbar />
     </div>
   );

@@ -1,0 +1,4 @@
+로고 및 사진 파일 public/img 내에 넣음
+App.tsx에 Route를 Routing.tsx로 따로빼서 App.tsx 코드 정리함
+Header.tsx, Footer.tsx 수정
+Layout.tsx 내 <main>에 margin-top을 줘서 모든 페이지 헤더 아래에 표시되게 함
