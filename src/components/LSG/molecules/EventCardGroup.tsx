@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import EventContents from "../../../pages/EventContents";
 import EventCard from "../atom/EventCard";
 
 const EventCardGroup = () => {

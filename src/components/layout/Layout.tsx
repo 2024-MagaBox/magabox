@@ -5,7 +5,7 @@ const Layout = (props: { children: React.ReactNode }) => {
   return (
     <>
       <Header />
-      <main className="h-[600px]">{props.children}</main>
+      <main className="my-40">{props.children}</main>
       <Footer />
     </>
   );
