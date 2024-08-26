@@ -5,7 +5,7 @@ const Layout = (props: { children: React.ReactNode }) => {
   return (
     <>
       <Header />
-      <main className="mt-32 py-10">{props.children}</main>
+      <main className="h-[600px]">{props.children}</main>
       <Footer />
     </>
   );
