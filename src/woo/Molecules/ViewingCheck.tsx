@@ -1,5 +1,5 @@
-import PersonnelButton from "../Atoms/PersonnelButton";
-import ViewingButton from "../Atoms/ViewingButton";
+
+import ViewingButton from "../Atom/ViewingButton";
 import { Payment } from "../utils/util";
 
 // 영화명, *관, 시간, 금액

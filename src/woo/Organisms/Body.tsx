@@ -25,7 +25,7 @@ const Body = () => {
         className="w-full max-w-5xl m-auto flex gap-10"
         style={{ paddingBottom: "100px" }}
       >
-        <NumberOfSpectators handlePlus={plusNum} />
+        <NumberOfSpectators />
       </div>
       <div className="flex justify-center items-center relative ">
         <SeatsChoose />

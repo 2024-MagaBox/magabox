@@ -1,7 +1,3 @@
-
-import PersonnelButton from "../Atoms/PersonnelButton";
-import NumberOfSpectators from "../Molecules/NumberOfSpectators";
-
 const Head = () => {
   return (
     <section
