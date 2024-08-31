@@ -9,6 +9,8 @@ import SignupPage from "../../pages/SignupPage";
 import SeatReservationPage from "../../pages/SeatReservationPage";
 import StorePage from "../../pages/StorePage";
 import UserFindPage from "../../pages/UserFindPage";
+import Body from "../../woo/Organisms/Body";
+import SeatsChoose from "../../woo/Molecules/SeatsChoose";
 
 const Routing = () => {
   return (
@@ -24,6 +26,7 @@ const Routing = () => {
           <Route path="/userfind" element={<UserFindPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/seatreservation" element={<SeatReservationPage />} />
+          <Route path="/seat" element={<Body />} />
         </Routes>
       </Layout>
     </div>
