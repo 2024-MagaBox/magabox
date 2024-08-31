@@ -4,13 +4,13 @@ const col = "ABCDE".split("");
 const row = ["1", "2", "3", "4", "5"];
 
 const getBackgroundColor = (seat: string, selectedSeats: Set<string>) => {
-  return selectedSeats.has(seat) ? "bg-green-500" : "bg-white";
+  return selectedSeats.has(seat) ? "bg-green" : "bg-white";
 };
 
 const getBorderColor = (seat: string, selectedSeats: Set<string>) => {
   if (selectedSeats.has(seat)) return "border-green-500"; // 선택된 좌석의 테두리 색상
-  if (["A", "B"].some((x) => seat.startsWith(x))) return "border-yellow-500";
-  if (["C", "D"].some((x) => seat.startsWith(x))) return "border-red-500";
+  if (["A", "B"].some((x) => seat.startsWith(x))) return "border-yellow";
+  if (["C", "D"].some((x) => seat.startsWith(x))) return "border-red";
   return "border-black";
 };
 

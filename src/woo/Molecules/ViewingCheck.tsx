@@ -7,7 +7,7 @@ import { Payment } from "../utils/util";
 const ViewingCheck = () => {
   return (
     <div
-      className="flex flex-col w-72  rounded-xl bg-violet-950 gap-2 text-white"
+      className="flex flex-col w-72  rounded-xl bg-primaryColor gap-2 text-white"
       style={{ paddingTop: "20px", paddingLeft: "15px", height: "500px" }}
     >
       <span className="flex flex-row font-extrabold text-2xl py-6">

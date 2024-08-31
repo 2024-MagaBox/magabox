@@ -6,6 +6,8 @@ import MyPage from "../../pages/MyPage";
 import Layout from "./Layout";
 import LoginPage from "../../pages/LoginPage";
 import SignupPage from "../../pages/SignupPage";
+import Body from "../../woo/Organisms/Body";
+import SeatsChoose from "../../woo/Molecules/SeatsChoose";
 
 const Routing = () => {
   return (
@@ -19,6 +21,8 @@ const Routing = () => {
           <Route path="/event:eventContentsId" element={<EventContents />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/seat" element={<Body />} />
+          <Route path="/seatt" element={<SeatsChoose />} />
         </Routes>
       </Layout>
     </div>

@@ -1,4 +1,7 @@
 // tailwind.config.js
+
+const { yellow } = require('@mui/material/colors');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
@@ -19,6 +22,11 @@ module.exports = {
       gray: "#cac4ce",
       primaryColor: "#242038",
       subColor: "#2E294E",
+      yellow: "#eab308",
+      red: "#dc2626",
+      black:"#000000",
+      green:"#22c55e" ,
+    
     },
   },
   plugins: [],

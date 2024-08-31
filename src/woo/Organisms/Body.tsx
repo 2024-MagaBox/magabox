@@ -1,24 +1,13 @@
-import { useState } from "react";
 import NumberOfSpectators from "../Molecules/NumberOfSpectators";
 import SeatsChoose from "../Molecules/SeatsChoose";
 import ViewingCheck from "../Molecules/ViewingCheck";
+
 type CheckProps = {
   price: Number;
 };
 
-type hanleNum = () => void;
 const Body = () => {
-  const [num, setNum] = useState<number>(0);
-
-  const plusNum: hanleNum = () => {
-    setNum((prev) => prev + 1);
-    num >= 2 ? setNum(2) : setNum(num + 1);
-  };
-  // const miunsNum = () => {
-  //   setNum((prev) => prev - 1);
-  //   num === 0 ? setNum(0) : setNum(num - 1);
-  // };
-
+  
   return (
     <div className="w-screen h-screens">
       <div
