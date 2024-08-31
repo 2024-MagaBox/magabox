@@ -6,6 +6,7 @@ import MyPage from "../../pages/MyPage";
 import Layout from "./Layout";
 import LoginPage from "../../pages/LoginPage";
 import SignupPage from "../../pages/SignupPage";
+import StorePage from "../KDE/StorePage";
 
 const Routing = () => {
   return (
@@ -15,7 +16,7 @@ const Routing = () => {
           <Route path="/" element={<MainPage />} />
           <Route path="/:Id" element={<MainPage />} />
           <Route path="/mypage" element={<MyPage />} />
-          <Route path="/event" element={<Event />} />
+          <Route path="/store" element={<StorePage />} />
           <Route path="/event:eventContentsId" element={<EventContents />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
