@@ -22,7 +22,7 @@ const Routing = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/seat" element={<Body />} />
-          <Route path="/seatt" element={<SeatsChoose />} />
+
         </Routes>
       </Layout>
     </div>
