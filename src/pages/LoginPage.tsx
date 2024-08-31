@@ -123,9 +123,9 @@ const LoginPage = () => {
                         >로그인</Button>
                     </div>
                     <div className="flex justify-between py-5">
-                        <Link to={"/"} className="w-[130px] text-center">ID/PW 찾기</Link>
+                        <Link to={"/userfind"} className="w-[130px] text-center">ID/PW 찾기</Link>
                         <span>|</span>
-                        <Link to={"/singup"} className="w-[130px] text-center">회원가입</Link>
+                        <Link to={"/signup"} className="w-[130px] text-center" >회원가입</Link>
                         <span>|</span>
                         <Link to={"/"} className="w-[130px] text-center">비회원예매확인</Link>
                     </div>
