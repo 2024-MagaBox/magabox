@@ -9,6 +9,7 @@ import SignupPage from "../../pages/SignupPage";
 import SeatReservationPage from "../../pages/SeatReservationPage";
 import StorePage from "../../pages/StorePage";
 import UserFindPage from "../../pages/UserFindPage";
+import MovieScheduleApp from "../JES/MovieScheduleApp";
 
 const Routing = () => {
   return (
@@ -18,6 +19,7 @@ const Routing = () => {
           <Route path="/" element={<MainPage />} />
           <Route path="/:Id" element={<MainPage />} />
           <Route path="/mypage" element={<MyPage />} />
+          <Route path="/schedule" element={<MovieScheduleApp />} />
           <Route path="/event" element={<Event />} />
           <Route path="/event:eventContentsId" element={<Event />} />
           <Route path="/login" element={<LoginPage />} />
