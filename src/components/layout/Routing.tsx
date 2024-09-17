@@ -18,7 +18,7 @@ const Routing = () => {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/event" element={<Event />} />
-          <Route path="event/event-contents" element={<EventContents />} />
+          <Route path="/event-contents/:EVENT_ID" element={<EventContents />} />
         </Routes>
       </Layout>
     </div>

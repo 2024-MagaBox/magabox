@@ -6,7 +6,7 @@ const EventContents = () => {
   const [message, setMessage] = useState<string>("");
 
   useEffect(() => {
-    axios.get("/event/event-contents").then((res) => {
+    axios.get("/event-contents").then((res) => {
       setMessage(res.data);
     });
   }, []);
