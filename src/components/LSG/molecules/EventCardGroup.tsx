@@ -4,7 +4,7 @@ import EventCard from "../atom/EventCard";
 const EventCardGroup = () => {
   return (
     <div className="w-full flex gap-10 mb-20">
-      <Link to={"eventcontents"}>
+      <Link to={`event-contents`}>
         <EventCard
           imgsrc="/img/eventLinkImg-1.jpg"
           title="[프로모션][굿즈] <메가박스X위글위글> 콤보 런칭!"

@@ -1,14 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import HorizontalLine from "../components/LSG/atom/HorizontalLine";
 
 const EventContents = () => {
   const [message, setMessage] = useState<string>("");
 
   useEffect(() => {
-    axios.get("/event/eventcontents").then((res) => {
-      setMessage(res.data.message);
+    axios.get("/event/event-contents").then((res) => {
+      setMessage(res.data);
     });
   }, []);
 
