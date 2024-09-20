@@ -29,10 +29,10 @@
 
 ## 역할분담
 
-- 이성규 Main
+- 이성규 Main/Login
 - 김도은 Store
 - 오연우 Seat
-- 임수경 Mypage
+- 임수경 Mypage/Event
 - 정의석 Schedule
 
 ---
