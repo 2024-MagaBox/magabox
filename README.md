@@ -7,6 +7,7 @@
 - Front
 
   <img src="https://img.shields.io/badge/react-61DAFB?style=flat-square&logo=react&logoColor=white" />
+  <img src="https://img.shields.io/badge/react-61DAFB.svg?&style=for-the-badge&logo=react&logoColor=white" />
   <img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" />
   <img src="https://img.shields.io/badge/mui-007FFF?style=flat-square&logo=mui&logoColor=white" />
   <img src="https://img.shields.io/badge/axios-5A29E4?style=flat-square&logo=axios&logoColor=white" />
@@ -14,7 +15,7 @@
 - Back
 
   <img src="https://img.shields.io/badge/express-000000?style=flat-square&logo=express&logoColor=white" />
-  <img src="https://img.shields.io/badge/springboot-6DB33F.svg?&style=for-the-badge&logo=springboot&logoColor=white" />
+  <img src="https://img.shields.io/badge/springboot-6DB33F.svg?&style=flat-square&logo=springboot&logoColor=white" />
 
 - Database
 
