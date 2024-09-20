@@ -1,25 +1,50 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Params, useParams } from "react-router-dom";
 import HorizontalLine from "../components/LSG/atom/HorizontalLine";
 
 const EventContents = () => {
-  const [message, setMessage] = useState<string>("");
+  const { EVENT_ID } = useParams<Params>();
 
+  const [title, setTitle] = useState<string>("");
+  const [content, setContent] = useState<string>("");
+  const [begin, setBegin] = useState<Date>();
+  const [end, setEnd] = useState<Date>();
+
+  // 제목
   useEffect(() => {
-    axios.get("/event-contents").then((res) => {
-      setMessage(res.data);
+    axios.get(`/event-title/${EVENT_ID}`).then((res) => {
+      setTitle(res.data);
     });
   }, []);
 
-  const title = `[프로모션][굿즈] <메가박스X위글위글> 콤보 런칭!`;
+  // 이미지
+  useEffect(() => {
+    axios.get(`/event-contents/${EVENT_ID}`).then((res) => {
+      setContent(res.data);
+    });
+  }, []);
+
+  //기간
+  useEffect(() => {
+    axios.get(`/event-begin/${EVENT_ID}`).then((res) => {
+      setBegin(res.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    axios.get(`/event-end/${EVENT_ID}`).then((res) => {
+      setEnd(res.data);
+    });
+  }, []);
 
   return (
     <>
       <div className="w-full max-w-3xl mx-auto flex flex-col gap-4">
         <div className="text-xl">{title}</div>
-        <div className="text-base">기간 | 2024.08.21 ~ 2024.10.30</div>
+        <div className="text-base">{`기간 | ${begin} ~ ${end}`}</div>
         <HorizontalLine />
-        <img src={message} className="mt-3" />
+        <img src={content} className="mt-3" />
       </div>
     </>
   );
