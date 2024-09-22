@@ -38,7 +38,7 @@ const EventCardGroup = () => {
   ];
 
   return (
-    <div className="w-full flex gap-10 mb-20">
+    <div className="w-full max-w-screen-lg flex justify-between mb-20">
       {eventDummyData.map((v) => (
         <Link to={`/event-contents/${v.EVENT_ID}`}>
           <EventCard {...v} />
