@@ -12,6 +12,7 @@ module.exports = {
       sm: "13px",
       base: "16px",
       lg: "20px",
+      xl: "30px",
     },
     colors: {
       white: "#ffffff",

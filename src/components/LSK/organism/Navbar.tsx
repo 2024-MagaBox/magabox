@@ -47,6 +47,7 @@ const Navbar = () => {
           <Link to={"/"}>영화</Link>
           <Link to={"/event"}>이벤트</Link>
           <Link to={"/store"}>스토어</Link>
+
           </div>
         </Stack>
       </div>

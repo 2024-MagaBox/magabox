@@ -1,22 +1,15 @@
 import SubNavbar from "../components/LSG/organism/SubNavbar";
-import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
-import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 import CategoryTitle from "../components/LSG/molecules/CategoryTitle";
 import EventCardGroup from "../components/LSG/molecules/EventCardGroup";
+import EventSlideImg from "../components/LSG/organism/EventSlideImg";
 
 const Event = () => {
   return (
     <>
       <SubNavbar />
-
-      {/*  */}
-      <div className="w-full max-w-screen-lg mx-auto py-3">
+      <div className="w-full max-w-screen-lg mx-auto">
         <div className="py-7 text-lg font-bold">전체</div>
-        <div className="flex gap-3 items-center mb-20">
-          <ArrowBackIosNewRoundedIcon className="hover:cursor-pointer" />
-          <div className="w-full h-96 p-5 bg-gray flex"></div>
-          <ArrowForwardIosRoundedIcon className="hover:cursor-pointer" />
-        </div>
+        <EventSlideImg />
 
         <CategoryTitle title="미소지기 Pick" />
         <EventCardGroup />

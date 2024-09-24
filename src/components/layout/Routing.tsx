@@ -17,13 +17,14 @@ const Routing = () => {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/:Id" element={<MainPage />} />
-          <Route path="/mypage" element={<MyPage />} />
-          <Route path="/event" element={<Event />} />
-          <Route path="/event:eventContentsId" element={<Event />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/userfind" element={<UserFindPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/seatreservation" element={<SeatReservationPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/event" element={<Event />} />
+          <Route path="/event-contents/:EVENT_ID" element={<EventContents />} />
         </Routes>
       </Layout>
     </div>
