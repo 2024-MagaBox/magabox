@@ -1,5 +1,3 @@
-import React from "react";
-
 const StoreItem = (props: {
   imgSrc: any;
   title: any;
