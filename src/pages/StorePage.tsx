@@ -11,7 +11,7 @@ const StoreItem = (props: {
   const { imgSrc, title, subtitle, price, isNew, isSoldOut } = props;
 
   return (
-    <div className="relative p-4 bg-white border rounded-lg shadow-md hover:bg-gray-200">
+    <div className="relative p-4 bg-white border rounded-lg shadow-md hover:bg-gray">
       {isNew && (
         <div className="absolute top-0 left-0 px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded-br-lg">
           NEW
@@ -52,7 +52,7 @@ const StorePage = () => {
           isSoldOut={true}
         />
         <StoreItem
-          imgSrc="   https://img.megabox.co.kr/SharedImg/store/2023/12/21/xgNuyruo8l24C6EspYo67ZLM48ybqFZN_280.png"
+          imgSrc="	https://img.megabox.co.kr/SharedImg/store/2023/12/21/xgNuyruo8l24C6EspYo67ZLM48ybqFZN_280.png"
           title="오징어튀김 세트"
           subtitle="오징어튀김1 + 탄산음료(L) 1"
           price="8,900"
@@ -60,7 +60,7 @@ const StorePage = () => {
           isSoldOut={false}
         />
         <StoreItem
-          imgSrc="   https://img.megabox.co.kr/SharedImg/store/2023/12/21/K99yJLfXxchZxW3DnC67i4Aj2gVlkdOG_280.png"
+          imgSrc="	https://img.megabox.co.kr/SharedImg/store/2023/12/21/K99yJLfXxchZxW3DnC67i4Aj2gVlkdOG_280.png"
           title="오징어튀김"
           subtitle="오징어튀김1"
           price="6,900"
@@ -68,7 +68,7 @@ const StorePage = () => {
           isSoldOut={false}
         />
         <StoreItem
-          imgSrc="   https://img.megabox.co.kr/SharedImg/store/2022/03/07/qB1IVqlOLCV7hOOEAJp4J9iG3J5oVWjv_720.png"
+          imgSrc="	https://img.megabox.co.kr/SharedImg/store/2022/03/07/qB1IVqlOLCV7hOOEAJp4J9iG3J5oVWjv_720.png"
           title="러브콤보"
           subtitle="팝콘(L) 1 + 탄산음료(R) 2"
           price="9,900"
@@ -76,7 +76,7 @@ const StorePage = () => {
           isSoldOut={false}
         />
         <StoreItem
-          imgSrc="   https://img.megabox.co.kr/SharedImg/store/2022/03/07/qB1IVqlOLCV7hOOEAJp4J9iG3J5oVWjv_720.png"
+          imgSrc="	https://img.megabox.co.kr/SharedImg/store/2022/03/07/qB1IVqlOLCV7hOOEAJp4J9iG3J5oVWjv_720.png"
           title="더블콤보"
           subtitle="팝콘(R) 2 + 탄산음료(R) 2"
           price="12,900"

@@ -1,11 +1,18 @@
-import Body from "../components/OYW/Organisms/Body"
-import Head from "../components/OYW/Organisms/Heade"
+import { useSearchParams } from "react-router-dom";
+import Body from "../components/OWY/Organisms/Body"
+import Head from "../components/OWY/Organisms/Heade"
 
 const SeatReservationPage = () => {
+    const [params, setParams] = useSearchParams();
+    const movie = Number(params.get("movie"));
+    const region = Number(params.get("region"));
+    const theater = Number(params.get("theater"));
+    const time  = Number(params.get("time"));
+    
     return (
-        <div className="bg-darkgray">
+        <div>
             <Head />
-            <Body />
+            <Body movie={movie} region={region} theater={theater} time={time}/>
         </div>
     )
 }

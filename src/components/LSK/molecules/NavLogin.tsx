@@ -1,10 +1,10 @@
 import useLoginStore from "../../../stores/login"
 import {Avatar} from "@mui/material"
 import { deepOrange, deepPurple } from '@mui/material/colors';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, redirect, useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 
@@ -18,6 +18,7 @@ const AbsoluteMenu = styled(Menu)(({ theme }) => ({
 const NavLogin = () => {
     const {loginId, setLoginId} = useLoginStore();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const Navigate = useNavigate();
 
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -31,7 +32,17 @@ const NavLogin = () => {
         setLoginId('');
         setAnchorEl(null);
       }
+
+      const handleSignup = () => {
+        if (!loginId){
+            setAnchorEl(null);
+            Navigate("/signup");
+        } else {
+            alert("로그인 중엔 사용 불가")
+        }
+      }
     
+
     return (
         <div style={{ position: 'relative' }}>
             {loginId ?
@@ -58,10 +69,12 @@ const NavLogin = () => {
                             position: 'absolute',
                             top: '100px', // 원하는 위치를 설정
                             right: '0', // 원하는 위치를 설정
+                            width: '100px',
                         },
                     }}
                     >
-                    <MenuItem onClick={handleLogout}>LogOut</MenuItem>
+                    <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                    <MenuItem onClick={handleSignup}>Signup</MenuItem>
                     </AbsoluteMenu>
                 </div>
             :    

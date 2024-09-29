@@ -9,24 +9,26 @@ import SignupPage from "../../pages/SignupPage";
 import SeatReservationPage from "../../pages/SeatReservationPage";
 import StorePage from "../../pages/StorePage";
 import UserFindPage from "../../pages/UserFindPage";
-import Body from "../../woo/Organisms/Body";
-import SeatsChoose from "../../woo/Molecules/SeatsChoose";
+import GuestPage from "../../pages/GuestPage";
+import MovieSchedulePage from "../../pages/MovieSchedulePage";
 
 const Routing = () => {
   return (
-    <div className="w-screen font-Pretendard">
+    <div className="w-full font-Pretendard">
       <Layout>
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/:Id" element={<MainPage />} />
           <Route path="/mypage" element={<MyPage />} />
+          <Route path="/store" element={<StorePage />} />
           <Route path="/event" element={<Event />} />
-          <Route path="/event:eventContentsId" element={<Event />} />
+          <Route path="/event-contents/:EVENT_ID" element={<EventContents />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/userfind" element={<UserFindPage />} />
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/guest" element={<GuestPage />} />
           <Route path="/seatreservation" element={<SeatReservationPage />} />
-          <Route path="/seat" element={<Body />} />
+          <Route path="/reservation/:id" element={<MovieSchedulePage />} />
         </Routes>
       </Layout>
     </div>

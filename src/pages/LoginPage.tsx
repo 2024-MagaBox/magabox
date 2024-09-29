@@ -6,12 +6,17 @@ import { useCookies } from 'react-cookie';
 import { Link, useNavigate } from "react-router-dom";
 import { LoginError } from "../contexts/ErrorMsg";
 import useLoginStore from "../stores/login";
+import axios from "axios";
 
 const LoginPage = () => {
     const navigate = useNavigate();
     const { loginId, setLoginId } = useLoginStore(); 
-    const [userId, setUserId] = useState<string>("");
-    const [userPw, setUserPw] = useState<string>("");
+    const [user, setUser] = useState<{username:string, password:string}>({
+        username:'',
+        password:'',
+    })
+    // const [userId, setUserId] = useState<string>("");
+    // const [userPw, setUserPw] = useState<string>("");
     const [errors, setErrors] = useState<{ error_id: boolean, error_pw: boolean }>({
         error_id: false,
         error_pw: false,
@@ -21,7 +26,8 @@ const LoginPage = () => {
 
     useEffect(() => {
         if (cookies.rememberUserId !== undefined) {
-            setUserId(cookies.rememberUserId);
+            // setUserId(cookies.rememberUserId);
+            setUser((prev) => ({...prev, userId:cookies.rememberUserId}));
             setRememberId(true);
         } else {
             removeCookie('rememberUserId');
@@ -32,14 +38,16 @@ const LoginPage = () => {
         if (e.target.value === '') {
             setErrors((prev) => ({ ...prev, error_id: false }));
         }
-        setUserId(e.target.value);
+        // setUserId(e.target.value);
+        setUser((prev)=>({...prev, username: e.target.value}))
     };
 
     const handleUserpw = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.value === '') {
             setErrors((prev) => ({ ...prev, error_pw: false }));
         }
-        setUserPw(e.target.value);
+        // setUserPw(e.target.value);
+        setUser((prev)=>({...prev, password:e.target.value}))
     };
 
     const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,40 +55,57 @@ const LoginPage = () => {
     };
 
     const validateEmail = (value: string): boolean => {
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const emailRegex = /^[a-zA-Z0-9._%+-]$/;
         const isValid = emailRegex.test(value);
-        setErrors((prev) => ({ ...prev, error_id: !isValid }));
+        setErrors((prev) => ({ ...prev, error_id: isValid }));
         return isValid;
     };
 
     const validationPassWord = (value: string): boolean => {
         const passwordRegEx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,20}$/;
         const isValid = passwordRegEx.test(value);
-        setErrors((prev) => ({ ...prev, error_pw: !isValid }));
+        setErrors((prev) => ({ ...prev, error_pw: isValid }));
         return isValid;
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const isEmailValid = validateEmail(userId);
-        const isPasswordValid = validationPassWord(userPw);
-
-
-        // 최종 유효성 검사를 통과한 경우에만 로그인 진행
+        const isEmailValid = validateEmail(user.username);
+        const isPasswordValid = validationPassWord(user.password);
+    
         if (!isEmailValid && !isPasswordValid) {
-            if (userId === 'admin' && userPw === 'qwer') {
-                if (rememberId) {
-                    setCookie('rememberUserId', userId, { path: '/' });
-                } else {
-                    removeCookie('rememberUserId');
+            try {
+                const response = await axios.post("http://localhost:8080/auth/login", user);
+                console.log(response)
+                if ((response.status = 200) && (response.data !== 'Fail')) {
+                    navigate("/");
+                    setLoginId(user.username);
+                    localStorage.setItem("jwt", response.data);
+                    if (rememberId) {
+                        setCookie('rememberUserId', user.username, { path: '/' });
+                    } else {
+                        removeCookie('rememberUserId');
+                    }
                 }
-                setLoginId(userId);
-                navigate('/'); // 페이지 리다이렉션
-            }
+            } catch (error) {
+                if (axios.isAxiosError(error) && error.response) {
+                    // 서버에서 응답한 오류 처리
+                    if (error.response.status === 403) {
+                        alert("로그인 권한이 없습니다. 아이디와 비밀번호를 확인하세요.");
+                    } else {
+                        alert("로그인 중 오류가 발생했습니다.");
+                    }
+                }
+                removeCookie('rememberUserId'); // 오류 발생 시 쿠키 삭제
+                console.error(error);
+            }    
+        } else {
+            alert("아이디와 비밀번호를 확인하세요.");
         }
     };
 
     return (
+        <div className="w-full h-[700px]">
         <div className="w-full h-full border flex justify-center items-center">
             <div className="w-[500px] h-[400px] p-10 rounded-md border">
                 <form onSubmit={handleSubmit}>
@@ -89,7 +114,7 @@ const LoginPage = () => {
                             id="ID-basic"
                             label="아이디"
                             variant="standard"
-                            value={userId}
+                            value={user.username}
                             onChange={handleUserid}
                             error={errors.error_id}
                             helperText={errors.error_id ? LoginError.E_id : ''}
@@ -104,7 +129,7 @@ const LoginPage = () => {
                             autoComplete="current-password"
                             variant="standard"
                             onChange={handleUserpw}
-                            value={userPw}
+                            value={user.password}
                             error={errors.error_pw}
                             helperText={errors.error_pw ? LoginError.E_pw : ''}
                             fullWidth
@@ -127,10 +152,11 @@ const LoginPage = () => {
                         <span>|</span>
                         <Link to={"/signup"} className="w-[130px] text-center" >회원가입</Link>
                         <span>|</span>
-                        <Link to={"/"} className="w-[130px] text-center">비회원예매확인</Link>
+                        <Link to={"/guest"} className="w-[130px] text-center">비회원예매확인</Link>
                     </div>
                 </form>
             </div>
+        </div>
         </div>
     );
 };

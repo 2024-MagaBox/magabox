@@ -4,9 +4,9 @@ import {Button, TextField } from "@mui/material";
 
 type postType = {
   signup: {
-    userZipcode: string;
-    userAddress1: string;
-    userAddress2: string;
+    zip: string;
+    address1: string;
+    address2: string;
   };
   setSignup: React.Dispatch<React.SetStateAction<any>>;
 }
@@ -30,8 +30,8 @@ const Postcode = ({signup, setSignup}:postType) => {
 
       setSignup((prev:any) => ({
         ...prev,
-        userZipcode: data.zonecode,
-        userAddress1: fullAddress,
+        zip: data.zonecode,
+        address1: fullAddress,
       }));
     }
    
@@ -47,7 +47,7 @@ const Postcode = ({signup, setSignup}:postType) => {
         id="userZipcode"
         label="주소번호"
         variant="standard"
-        value={signup.userZipcode}
+        value={signup.zip}
         sx={{width: 200}}
         />
         <Button type='button' variant="contained" onClick={handleClick}>
@@ -58,7 +58,7 @@ const Postcode = ({signup, setSignup}:postType) => {
             id="userAddress1"
             label="주소"
             variant="standard"
-            value={signup.userAddress1}
+            value={signup.address1}
             fullWidth
             />
         </div>

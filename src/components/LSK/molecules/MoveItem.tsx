@@ -1,4 +1,5 @@
 import Button from '@mui/material/Button';
+import { Link, useNavigate } from "react-router-dom";
 
 type MovieType = {
     srcUrl: string,
@@ -13,7 +14,9 @@ const MovieItem = ({srcUrl, alt, movieno}:MovieType) => {
                 <img className="rounded-lg" src={srcUrl} alt={alt} />
             </div>
             <div className='grid justify-items-center m-4'>
-               <Button variant="outlined">예약하기</Button>
+               <Link to={`/reservation/${movieno}`}>
+                 <Button variant="outlined">예약하기</Button>
+               </Link>
             </div>
         </div>
     )
