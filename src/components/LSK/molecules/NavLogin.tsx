@@ -42,6 +42,7 @@ const NavLogin = () => {
         localStorage.removeItem('login-pin');
         setLoginId('');
         setAnchorEl(null);
+        Navigate('/');
       }
 
       const handleSignup = () => {
@@ -54,7 +55,7 @@ const NavLogin = () => {
       }
     
     return (
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: 'relative' }} className="cursor-pointer">
             {loginId ?
                 <div>
                     <div onClick={handleMenu}>

@@ -9,10 +9,11 @@ import useLoginStore from "../../../stores/login";
 
 type propType = {
   time: number,
+  num:number,
   selected: Set<string>,
   date: string,
 }
-const ViewingButton = ({time,selected,date}:propType) => {
+const ViewingButton = ({time,num,selected,date}:propType) => {
   const navigate = useNavigate();
   const {loginId, setLoginId} = useLoginStore();
   const [userpin, setUserpin] = useState(0);
@@ -23,14 +24,22 @@ const ViewingButton = ({time,selected,date}:propType) => {
   }
   const handleNextPage =  async() => {
     if(loginId){
-       await findUserPin();
+      if(num !== 0){
+        if (num === selected.size){
+            await findUserPin();
 
-      if(userpin){
-        await saveReservation();
-        for (const seat of Array.from(selected)) {
-          await saveReservationSeats(seat); // 각 좌석 저장
+            if(userpin){
+              await saveReservation();
+              for (const seat of Array.from(selected)) {
+                await saveReservationSeats(seat); // 각 좌석 저장
+              }
+              navigate("/mypage")
+            }
+        } else {
+          alert("자리 선택이 필요합니다.")
         }
-        navigate("/mypage")
+      } else {
+        alert("인원 선택이 필요합니다.")
       }
     } else {
       alert("로그인이 필요합니다.")

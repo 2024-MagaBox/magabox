@@ -54,7 +54,7 @@ const Navbar = () => {
         </Stack>
       </div>
       <div className="flex items-center gap-4">
-        <span onClick={handleMypage}>마이페이지</span>
+        <span onClick={handleMypage} className="cursor-pointer">마이페이지</span>
         {/* <Link to={"/mypage"} >마이페이지</Link>  */}
         <NavLogin />
       </div>

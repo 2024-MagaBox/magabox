@@ -91,7 +91,7 @@ const ViewingCheck = ({movie, region, theater, time, num, selected}:CheckProps) 
           최종결제금액 {totalPrice.toLocaleString()}
         </span>
         <div className="flex justify-center items-center pt-9">
-          <ViewingButton time={time} selected={selected} date={date}/>
+          <ViewingButton time={time} num={num} selected={selected} date={date}/>
         </div>
       </div>
     </div>

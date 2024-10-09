@@ -10,11 +10,11 @@ const SignupPage = () => {
     const [signup, setSignup] = useState({
         username: "",
         password: "",
-        name: "",
-        tel: "",
-        zip: "",
-        address1: "",
-        address2: "",
+        user_name: "",
+        user_tel: "",
+        user_zip: "",
+        user_address1: "",
+        user_address2: "",
     });
     const [passwordChk, setPasswordChk] = useState<string>("");
     
@@ -145,10 +145,10 @@ const SignupPage = () => {
                     </div>
                     <div>
                         <TextField
-                            id="name"
+                            id="user_name"
                             label="이름"
                             variant="standard"
-                            value={signup.name}
+                            value={signup.user_name}
                             onChange={handleChange}
                             fullWidth
                             required
@@ -156,10 +156,10 @@ const SignupPage = () => {
                     </div>
                     <div>
                         <TextField
-                            id="tel"
+                            id="user_tel"
                             label="연락처"
                             variant="standard"
-                            value={signup.tel}
+                            value={signup.user_tel}
                             onChange={handleChange}
                             error={errors.error_Phone}
                             helperText={errors.error_Phone ? LoginError.E_phone : ''}
@@ -175,10 +175,10 @@ const SignupPage = () => {
                     </div>
                     <div>
                         <TextField
-                            id="address2"
+                            id="user_address2"
                             label="상세주소"
                             variant="standard"
-                            value={signup.address2}
+                            value={signup.user_address2}
                             onChange={handleChange}
                             fullWidth
                         />

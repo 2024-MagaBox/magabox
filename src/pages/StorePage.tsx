@@ -1,10 +1,13 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 const StoreItem = (props: {
-  imgSrc: any;
-  title: any;
-  subtitle: any;
-  price: any;
-  isNew: any;
-  isSoldOut: any;
+  imgSrc: string;
+  title: string;
+  subtitle: string;
+  price: number;
+  isNew: boolean;
+  isSoldOut: boolean;
 }) => {
   const { imgSrc, title, subtitle, price, isNew, isSoldOut } = props;
 
@@ -28,59 +31,58 @@ const StoreItem = (props: {
   );
 };
 
+type StorePageType = {
+  product_id: number;
+  product_name: string;
+  product_description: string;
+  is_new: number;
+  is_sold_out: number;
+  url: string;
+  price: number;
+};
+
 const StorePage = () => {
+  const [storePage, setStorePage] = useState<StorePageType[]>([]);
+  const [loading, setLoading] = useState<boolean>(true); //로딩 초기
+
+  useEffect(() => {
+    getStorePage();
+  }, []);
+
+  const getStorePage = async () => {
+    try {
+      const result = await axios.get<StorePageType[]>(
+        "http://localhost:8080/api/productAll"
+      );
+      setStorePage(result.data);
+    } catch (error) {
+      console.log("Erro fetching store:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="p-8 bg-gray-100 hover:">
       <h1 className="text-3xl font-bold mb-8">스토어</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <StoreItem
-          imgSrc="https://img.megabox.co.kr/SharedImg/store/2024/03/29/vMsr1afs6h28dyrsnpTb5UHoL05hxISS_280.png"
-          title="황태스낵"
-          subtitle="황태스낵 1"
-          price="5,900"
-          isNew={true}
-          isSoldOut={false}
-        />
-        <StoreItem
-          imgSrc="https://img.megabox.co.kr/SharedImg/store/2024/03/29/vMsr1afs6h28dyrsnpTb5UHoL05hxISS_280.png"
-          title="(특가) 황태스낵"
-          subtitle="황태스낵 1"
-          price="2,900"
-          isNew={false}
-          isSoldOut={true}
-        />
-        <StoreItem
-          imgSrc="	https://img.megabox.co.kr/SharedImg/store/2023/12/21/xgNuyruo8l24C6EspYo67ZLM48ybqFZN_280.png"
-          title="오징어튀김 세트"
-          subtitle="오징어튀김1 + 탄산음료(L) 1"
-          price="8,900"
-          isNew={true}
-          isSoldOut={false}
-        />
-        <StoreItem
-          imgSrc="	https://img.megabox.co.kr/SharedImg/store/2023/12/21/K99yJLfXxchZxW3DnC67i4Aj2gVlkdOG_280.png"
-          title="오징어튀김"
-          subtitle="오징어튀김1"
-          price="6,900"
-          isNew={false}
-          isSoldOut={false}
-        />
-        <StoreItem
-          imgSrc="	https://img.megabox.co.kr/SharedImg/store/2022/03/07/qB1IVqlOLCV7hOOEAJp4J9iG3J5oVWjv_720.png"
-          title="러브콤보"
-          subtitle="팝콘(L) 1 + 탄산음료(R) 2"
-          price="9,900"
-          isNew={false}
-          isSoldOut={false}
-        />
-        <StoreItem
-          imgSrc="	https://img.megabox.co.kr/SharedImg/store/2022/03/07/qB1IVqlOLCV7hOOEAJp4J9iG3J5oVWjv_720.png"
-          title="더블콤보"
-          subtitle="팝콘(R) 2 + 탄산음료(R) 2"
-          price="12,900"
-          isNew={false}
-          isSoldOut={false}
-        />
+        {loading ? (
+          <div>Loading...</div>
+        ) : (
+          storePage.map((product) => {
+            return (
+              <StoreItem
+                key={product.product_id}
+                imgSrc={product.url}
+                title={product.product_name}
+                subtitle={product.product_description}
+                price={product.is_sold_out ? 0 : product.price} // 실제 가격 데이터로 변경
+                isNew={product.is_new === 1}
+                isSoldOut={product.is_sold_out === 1}
+              />
+            );
+          })
+        )}
       </div>
     </div>
   );
