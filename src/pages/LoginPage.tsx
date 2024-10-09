@@ -15,24 +15,20 @@ const LoginPage = () => {
         username:'',
         password:'',
     })
-    // const [userId, setUserId] = useState<string>("");
-    // const [userPw, setUserPw] = useState<string>("");
     const [errors, setErrors] = useState<{ error_id: boolean, error_pw: boolean }>({
         error_id: false,
         error_pw: false,
     });
-    const [cookies, setCookie, removeCookie] = useCookies(["rememberUserId"]);
+    //const [cookies, setCookie, removeCookie] = useCookies(["rememberUserId"]);
     const [rememberId, setRememberId] = useState<boolean>(false);
 
     useEffect(() => {
-        if (cookies.rememberUserId !== undefined) {
-            // setUserId(cookies.rememberUserId);
-            setUser((prev) => ({...prev, userId:cookies.rememberUserId}));
+        const storedUserId = localStorage.getItem('rememberUserId');
+        if (storedUserId) {
+            setUser(prev => ({ ...prev, username: storedUserId }));
             setRememberId(true);
-        } else {
-            removeCookie('rememberUserId');
         }
-    }, [cookies, removeCookie]);
+    }, []);
 
     const handleUserid = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.value === '') {
@@ -68,24 +64,30 @@ const LoginPage = () => {
         return isValid;
     };
 
+
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const isEmailValid = validateEmail(user.username);
         const isPasswordValid = validationPassWord(user.password);
-    
+     
         if (!isEmailValid && !isPasswordValid) {
             try {
-                const response = await axios.post("http://localhost:8080/auth/login", user);
-                console.log(response)
+                const response = await axios.post("http://localhost:8080/auth/login", user,{
+                    withCredentials: true
+                });
                 if ((response.status = 200) && (response.data !== 'Fail')) {
                     navigate("/");
                     setLoginId(user.username);
                     localStorage.setItem("jwt", response.data);
+                    localStorage.setItem('login-id', user.username);
                     if (rememberId) {
-                        setCookie('rememberUserId', user.username, { path: '/' });
+                        localStorage.setItem('rememberUserId', user.username);
                     } else {
-                        removeCookie('rememberUserId');
+                        localStorage.removeItem('rememberUserId');
                     }
+
+
                 }
             } catch (error) {
                 if (axios.isAxiosError(error) && error.response) {
@@ -96,9 +98,17 @@ const LoginPage = () => {
                         alert("로그인 중 오류가 발생했습니다.");
                     }
                 }
-                removeCookie('rememberUserId'); // 오류 발생 시 쿠키 삭제
+                localStorage.removeItem('rememberUserId');
+                //removeCookie('rememberUserId'); // 오류 발생 시 쿠키 삭제
                 console.error(error);
             }    
+            try {
+                const result = await axios.get(`http://localhost:8080/api/findUserPin?userid=${user.username}`);
+                localStorage.setItem('login-pin', result.data);
+            } catch (error) {
+                localStorage.removeItem('login-pin');
+                console.error(error);
+            }
         } else {
             alert("아이디와 비밀번호를 확인하세요.");
         }

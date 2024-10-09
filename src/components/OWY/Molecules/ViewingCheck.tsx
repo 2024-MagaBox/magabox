@@ -11,6 +11,7 @@ type CheckProps = {
   theater: number,
   time: number,
   num: number,
+  selected: Set<string>,
 }
 type apiType = {
   movie?: number,
@@ -20,7 +21,7 @@ type apiType = {
   movietime?: string,
 }
 
-const ViewingCheck = ({movie, region, theater, time, num}:CheckProps) => {
+const ViewingCheck = ({movie, region, theater, time, num, selected}:CheckProps) => {
   const [movieInfo, setMoviInfo] = useState();
   const [apiinfo, setApiinfo] = useState<apiType>();
   const [totalPrice, setTotalPrice] = useState(0);
@@ -90,7 +91,7 @@ const ViewingCheck = ({movie, region, theater, time, num}:CheckProps) => {
           최종결제금액 {totalPrice.toLocaleString()}
         </span>
         <div className="flex justify-center items-center pt-9">
-          <ViewingButton time={time}/>
+          <ViewingButton time={time} selected={selected} date={date}/>
         </div>
       </div>
     </div>

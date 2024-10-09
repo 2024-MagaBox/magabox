@@ -20,6 +20,14 @@ const NavLogin = () => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const Navigate = useNavigate();
 
+    useEffect(() => {
+        const storedLoginId = localStorage.getItem('login-id');
+        if (storedLoginId) {
+            setLoginId(storedLoginId); // localStorage의 값으로 상태 업데이트
+        }
+    }, [setLoginId]); // setLoginId가 변경될 때만 실행
+
+
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
       };
@@ -29,6 +37,9 @@ const NavLogin = () => {
       };
     
       const handleLogout = () => {
+        localStorage.removeItem('jwt');
+        localStorage.removeItem('login-id');
+        localStorage.removeItem('login-pin');
         setLoginId('');
         setAnchorEl(null);
       }
@@ -42,7 +53,6 @@ const NavLogin = () => {
         }
       }
     
-
     return (
         <div style={{ position: 'relative' }}>
             {loginId ?

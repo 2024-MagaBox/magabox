@@ -9,20 +9,27 @@ import useLoginStore from "../../../stores/login";
 
 type propType = {
   time: number,
+  selected: Set<string>,
+  date: string,
 }
-const ViewingButton = ({time}:propType) => {
+const ViewingButton = ({time,selected,date}:propType) => {
   const navigate = useNavigate();
   const {loginId, setLoginId} = useLoginStore();
   const [userpin, setUserpin] = useState(0);
+  const [bookingId, setBookingId] = useState('');
 
   const handlePrevPage = () => {
     navigate(-1);
   }
-  const handleNextPage = () => {
+  const handleNextPage =  async() => {
     if(loginId){
-      findUserPin();
+       await findUserPin();
+
       if(userpin){
-        saveReservation();
+        await saveReservation();
+        for (const seat of Array.from(selected)) {
+          await saveReservationSeats(seat); // 각 좌석 저장
+        }
         navigate("/mypage")
       }
     } else {
@@ -32,17 +39,44 @@ const ViewingButton = ({time}:propType) => {
 
   const findUserPin = async () => {
     const result = await axios.get(`http://localhost:8080/api/findUserPin?userid=${loginId}`)
-    setUserpin(result.data);
+    const userPinValue = result.data; // 유저 핀 값 가져오기
+
+    setUserpin(userPinValue);
+    setBookingId(`${date}_${time}_${userPinValue}`); 
   } 
   
   const saveReservation = async () => {
-    console.log(userpin)
-    const result = await axios.post(`http://localhost:8080/api/reservation`,{
-      booking_id:'test',
-      time_id: time,
-      user_pin: userpin,
-    })
+    try {
+      await axios.post(`http://localhost:8080/api/reservationSaveBooking`, {
+        booking_id: bookingId,
+        time_id: time,
+        user_pin: userpin,
+      });
+    } catch (error) {
+      console.error("예약 저장 중 오류 발생:", error);
+      alert("예약 저장에 실패했습니다.");
+    }
   }
+
+  const saveReservationSeatList = async () => {
+          selected.forEach(async (seat) => {
+            await saveReservationSeats(seat); // 각 좌석 저장
+          });
+  }
+
+  const saveReservationSeats = async (e: string) => {
+    try {
+      const result = await axios.get(`http://localhost:8080/api/booking/${bookingId}`);
+      await axios.post(`http://localhost:8080/api/reservationSaveSeat`, {
+        booking_pin: result.data.booking_pin,
+        seat: e,
+      });
+    } catch (error) {
+      console.error("좌석 예약 저장 중 오류 발생:", error);
+      alert("좌석 예약 저장에 실패했습니다.");
+    }
+  }
+
   return (
     <Box
       sx={{

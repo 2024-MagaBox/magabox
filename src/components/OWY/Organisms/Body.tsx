@@ -16,6 +16,8 @@ type hanleNum = () => void;
 const Body = ({movie, region, theater, time}:CheckProps) => {
     const [num, setNum] = useState<number>(0);
     const [choose, setChoose] = useState<number>(0);
+    const [selectedSeats, setSelectedSeats] = useState<Set<string>>(new Set());
+
     const plusNum: hanleNum = () => {
        setNum((prev) => (prev >= 2 ? 2 : prev + 1));
       };
@@ -40,9 +42,9 @@ const Body = ({movie, region, theater, time}:CheckProps) => {
           <NumberOfSpectators handlePlus={plusNum} handleMinus={minusNum} num={num}/>
         </div>
         <div className="flex justify-start items-center relative ">
-          <SeatsChoose num={num} choose={choose} setChoose={setChoose} />
+          <SeatsChoose num={num} choose={choose} setChoose={setChoose} selectedSeats={selectedSeats} setSelectedSeats={setSelectedSeats}/>
           <div className="flex absolute inset-y-0 right-[-400px]">
-            <ViewingCheck movie={movie} region={region} theater={theater} time={time} num={num}/>
+            <ViewingCheck movie={movie} region={region} theater={theater} time={time} num={num} selected={selectedSeats}/>
           </div>
         </div>
     </div>

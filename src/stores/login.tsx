@@ -2,8 +2,8 @@ import create from 'zustand';
 
 // 상태와 액션의 타입 정의
 interface LoginState {
-  loginId: string;
-  setLoginId: (text: string) => void;
+  loginId: string; // id와 pin을 포함하는 객체
+  setLoginId: (id:string) => void; // id와 pin을 설정하는 함수
 }
 
 // zustand 스토어 생성

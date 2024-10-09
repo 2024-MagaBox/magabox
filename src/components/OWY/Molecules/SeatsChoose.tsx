@@ -19,26 +19,25 @@ type SeatsType = {
   choose: number,
   num: number,
   setChoose: (count:number) => void,
+  selectedSeats: Set<string>,
+  setSelectedSeats: React.Dispatch<React.SetStateAction<Set<string>>>,
 }
 
-const SeatsChoose = ({num,choose=0, setChoose}:SeatsType) => {
-  const [selectedSeats, setSelectedSeats] = useState<Set<string>>(new Set());
+const SeatsChoose = ({num,choose=0, setChoose, selectedSeats, setSelectedSeats}:SeatsType) => {
+//  const [selectedSeats, setSelectedSeats] = useState<Set<string>>(new Set());
 
   const seats = col.flatMap((alpha) => row.map((num) => alpha + num));
 
   const handleClick = (seat: string) => {
     const isSeatSelected = selectedSeats.has(seat);
-    if (selectedSeats.size >= num && !isSeatSelected) return; 
+    
+    if (!isSeatSelected && selectedSeats.size >= num) return;
 
-    setSelectedSeats((prev) => {
-      const updated = new Set(prev);
-      if (isSeatSelected) {
-        updated.delete(seat); // 이미 선택된 좌석이면 선택 해제
-      } else {
-        updated.add(seat); // 선택되지 않은 좌석이면 선택
-      }
+    setSelectedSeats((prev: Set<string>) => {
+      const updated = new Set(prev); // Create a new Set to ensure immutability
+      isSeatSelected ? updated.delete(seat) : updated.add(seat);
       return updated;
-    });    
+    });
   };
 
   useEffect(() => {
