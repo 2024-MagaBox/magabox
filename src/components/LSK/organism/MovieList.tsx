@@ -6,9 +6,9 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 // MovieType을 개별 영화 항목으로 정의
 type MovieType = {
-    movieId: number;
-    movie_name: string;
-    movies_imgurl: string;
+    moviesID: number;
+    moviesNAME: string;
+    moviesIMGURL: string;
     useyn: string;
 };
 
@@ -54,11 +54,11 @@ const MovieList = () => {
                     <div className="h-full my-auto mx-2 cursor-pointer" onClick={prev}><ArrowBackIosIcon/></div>
                     <div className="flex gap-2">
                             {movies.map((movie, idx) => (
-                                <div key={movie.movieId} className={ idx >= current && idx <= current + 3 ? "block": "hidden"}>
+                                <div key={movie.moviesID} className={ idx >= current && idx <= current + 3 ? "block": "hidden"}>
                                     <MovieItem
-                                        srcUrl={movie.movies_imgurl}
-                                        alt={movie.movie_name}
-                                        movieno={movie.movieId.toString()}
+                                        srcUrl={movie.moviesIMGURL}
+                                        alt={movie.moviesNAME}
+                                        movieno={movie.moviesID ? movie.moviesID.toString() : 'Unknown'}
                                     />
                                 </div>
                             ))}

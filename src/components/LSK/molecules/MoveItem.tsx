@@ -9,9 +9,11 @@ type MovieType = {
 
 const MovieItem = ({srcUrl, alt, movieno}:MovieType) => {
     return (
-        <div>
+        <div key={movieno} className='h-[500px]'>
             <div>
-                <img className="rounded-lg" src={srcUrl} alt={alt} />
+               <Link to={`/movieinfo/${movieno}`}> 
+                 <img className="rounded-lg" src={srcUrl} alt={alt} />
+               </Link>
             </div>
             <div className='grid justify-items-center m-4'>
                <Link to={`/reservation/${movieno}`}>

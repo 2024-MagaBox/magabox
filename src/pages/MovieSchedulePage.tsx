@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../components/JES/style.css'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 type ParamType = {
@@ -20,14 +20,16 @@ const MovieSchedulePage: React.FC = () => {
   const [regionList, setRegionList] = useState<ParamType>();
   const [theaterList, setTheaterList] = useState<ParamType>();
   const [timeList, setTimeList] = useState<times>();
+  const Navigate = useNavigate();
+  const param = useParams();
+  const movieid = Number(param.id);
 
-  const [selectedMovie, setSelectedMovie] = useState<number>(1);
+  const [selectedMovie, setSelectedMovie] = useState<number>(movieid);
   const [selectedRegion, setSelectedRegion] = useState<number>(1);
   const [selectedTheater, setSelectedTheater] = useState<number>(1);
   const [selectedTime, setSelectedTime] = useState<number>(1);
 
-  const param = useParams();
-  const movieid = Number(param.id);
+
   // const movienm = movies[movieid];
 
   // 지역이 변경될 때 마다 해당 지역의 첫 번째 영화관과 첫 번째 시간을 선택하도록 설정
@@ -40,13 +42,14 @@ const MovieSchedulePage: React.FC = () => {
     gettiemList();
   }, [selectedTheater]);
 
+  useEffect(()=>{
+    gettiemList();
+  },[selectedMovie])
 
   // 컴포넌트가 처음 렌더링될 때 초기 상태 설정
   useEffect(() => {  
-    setSelectedMovie(movieid);
     getMovieList();
     getRegionList();
-    gettheaterList();
   }, []);
 
   const getMovieList = async () => {
@@ -70,24 +73,35 @@ const MovieSchedulePage: React.FC = () => {
   const gettheaterList = async () => {
     const result = await axios.get(`http://localhost:8080/api/reservation_theaters?region=${selectedRegion}`);
     const filtertheater = result.data.map((theater:any)=>({
-      key : Number(theater.theaters_id),
-      value: theater.theaters_name,
+      key : Number(theater.theatersId),
+      value: theater.theatersName,
     }))
     setTheaterList(filtertheater);
+    setSelectedTheater(filtertheater[0]?.key || 1); // 첫 번째 영화관 선택
+    setSelectedTime(1); // 시간 초기화
   }  
   
   const gettiemList = async () => {
     const result = await axios.get(`http://localhost:8080/api/reservation_times?movie=${selectedMovie}&theater=${selectedTheater}`);
     const filtertime = result.data.map((time:any)=>({
-      key : Number(time.times_id),
+      key : Number(time.timesId),
       value: time.time,
       hall: time.hall,
       seat: time.seats,
     }))
     setTimeList(filtertime);
-    
+    setSelectedTime(filtertime[0].key);
   }
 
+  const send = () => {
+    if (!selectedMovie || !selectedRegion || !selectedTheater || !selectedTime){
+      alert('입력필요')
+    } else {
+      Navigate(`/seatreservation?movie=${movieid}&region=${selectedRegion}&theater=${selectedTheater}&time=${selectedTime}`);
+    }
+    
+  }
+ 
   return (
     <div className="movie-schedule-app" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
       {/* 상단 헤더 */}
@@ -157,6 +171,7 @@ const MovieSchedulePage: React.FC = () => {
                 onClick={() => setSelectedTime(schedule.key)}
                 style={{ backgroundColor: schedule.key === selectedTime ? '#ddd' : '#f0f0f0', cursor: 'pointer', padding: '5px', marginBottom: '5px' }}
               >
+                <div>{schedule.key}</div>
                 <div>{schedule.value}</div>
                 <div>{schedule.hall}</div>
                 <div>{schedule.seat}</div> 
@@ -166,9 +181,9 @@ const MovieSchedulePage: React.FC = () => {
         </div>
       </div>
       <div>
-        <Link to={`/seatreservation?movie=${movieid}&region=${selectedRegion}&theater=${selectedTheater}&time=${selectedTime}`}>
-          <button className='border px-16 py-3 rounded-md hover:bg-darkgray'>다음</button>
-        </Link>
+        {/* <Link to={`/seatreservation?movie=${movieid}&region=${selectedRegion}&theater=${selectedTheater}&time=${selectedTime}`}> */}
+          <button onClick={send} className='border px-16 py-3 rounded-md hover:bg-darkgray'>다음</button>
+        {/* </Link> */}
       </div>
     </div>
   );

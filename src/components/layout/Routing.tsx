@@ -11,6 +11,8 @@ import StorePage from "../../pages/StorePage";
 import UserFindPage from "../../pages/UserFindPage";
 import GuestPage from "../../pages/GuestPage";
 import MovieSchedulePage from "../../pages/MovieSchedulePage";
+import MovieInfoPage from "../../pages/MovieInfoPage";
+import MovieMap from "../LSK/organism/MovieMap";
 
 const Routing = () => {
   return (
@@ -29,6 +31,8 @@ const Routing = () => {
           <Route path="/guest" element={<GuestPage />} />
           <Route path="/seatreservation" element={<SeatReservationPage />} />
           <Route path="/reservation/:id" element={<MovieSchedulePage />} />
+          <Route path="/movielist" element={<MovieMap />} />
+          <Route path="/movieinfo/:id" element={<MovieInfoPage />} />
         </Routes>
       </Layout>
     </div>

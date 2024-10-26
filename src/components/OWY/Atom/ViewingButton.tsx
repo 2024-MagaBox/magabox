@@ -29,11 +29,16 @@ const ViewingButton = ({time,num,selected,date}:propType) => {
             await findUserPin();
 
             if(userpin){
-              await saveReservation();
-              for (const seat of Array.from(selected)) {
-                await saveReservationSeats(seat); // 각 좌석 저장
+              try {
+                await saveReservationCheck();
+                await saveReservation();
+                for (const seat of Array.from(selected)) {
+                  await saveReservationSeats(seat); // 각 좌석 저장
+                }
+                navigate("/mypage")
+              } catch {
+                console.log('save_error')
               }
-              navigate("/mypage")
             }
         } else {
           alert("자리 선택이 필요합니다.")
@@ -43,17 +48,30 @@ const ViewingButton = ({time,num,selected,date}:propType) => {
       }
     } else {
       alert("로그인이 필요합니다.")
+      navigate("/login")
     }
   }
 
   const findUserPin = async () => {
-    const result = await axios.get(`http://localhost:8080/api/findUserPin?userid=${loginId}`)
-    const userPinValue = result.data; // 유저 핀 값 가져오기
-
+    // const result = await axios.get(`http://localhost:8080/api/findUserPin?userid=${loginId}`)
+    // const userPinValue = result.data; // 유저 핀 값 가져오기
+    const userPinValue = Number(localStorage.getItem('login-pin'));
     setUserpin(userPinValue);
     setBookingId(`${date}_${time}_${userPinValue}`); 
   } 
-  
+  const saveReservationCheck = async () => {
+    try{
+      const result = await axios.get(`http://localhost:8080/api/reservationCheck?bookingid=${bookingId}`)
+      if(result.data[0].length > 0){
+        console.log('zzzzzzzzz')
+      } else {
+        console.log('aaaaaaaaaaa')
+      }
+    } catch {
+      console.log('check error')
+    }
+  }
+
   const saveReservation = async () => {
     try {
       await axios.post(`http://localhost:8080/api/reservationSaveBooking`, {
@@ -77,7 +95,7 @@ const ViewingButton = ({time,num,selected,date}:propType) => {
     try {
       const result = await axios.get(`http://localhost:8080/api/booking/${bookingId}`);
       await axios.post(`http://localhost:8080/api/reservationSaveSeat`, {
-        booking_pin: result.data.booking_pin,
+        booking_pin: result.data.bookingPin,
         seat: e,
       });
     } catch (error) {

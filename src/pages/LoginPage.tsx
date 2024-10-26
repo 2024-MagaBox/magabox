@@ -86,8 +86,6 @@ const LoginPage = () => {
                     } else {
                         localStorage.removeItem('rememberUserId');
                     }
-
-
                 }
             } catch (error) {
                 if (axios.isAxiosError(error) && error.response) {

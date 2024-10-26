@@ -6,6 +6,10 @@
       "dom.iterable",
       "esnext"
     ],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./@types" // 추가한 타입 정의 경로
+  ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,

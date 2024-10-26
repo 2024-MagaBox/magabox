@@ -47,7 +47,7 @@ const Navbar = () => {
                 alt="메가박스"
               />{" "}
             </Link>
-            <Link to={"/"}>영화</Link>
+            <Link to={"/movielist"}>영화</Link>
             <Link to={"/event"}>이벤트</Link>
             <Link to={"/store"}>스토어</Link>
           </div>

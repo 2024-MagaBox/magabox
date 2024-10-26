@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import ViewingButton from "../Atom/ViewingButton";
-import { Payment } from "../utils/util";
+import { Payment } from "../../../utils/util";
 import axios from "axios";
 
 // 영화명, *관, 시간, 금액
