@@ -59,7 +59,7 @@ const UserIdFind = ({ findId, setFindId }: findIdType) => {
       return;
     }
 
-    setFindId({ ...findId, tel: "01" || findId.tel.substring(2) });
+    setFindId({ ...findId, tel: "01" + findId.tel.substring(2) });
 
     if (!errors.errors_id && !errors.errors_phone) {
       const response = async () => {
