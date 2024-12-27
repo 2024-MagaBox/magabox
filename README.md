@@ -41,6 +41,11 @@
 - 정의석 Schedule
 
 ---
+## 프로세스 흐름도
+![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/b0e1a77c-c3c7-47a3-bd91-ff0ed3407cd8/9a78f63c-40a0-4de1-aa30-ccd73dc12840/image.png)
+
+
+
 
 ## 주요기능
 JWT를 이용한 회원가입/로그인 기능
